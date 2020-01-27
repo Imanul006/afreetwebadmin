@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Web Admin | Afreet</title>
+  <link rel="stylesheet" href="style.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+</head>
+<body>
+
+    <div id="login_div" class="container">
+      <div class="imgcontainer">
+        <img src="img/logo.png" alt="Avatar" class="avatar">
+      </div>
+      <label for="uname"><b>Email</b></label>
+      <input id="email" type="text" placeholder="Enter Email" name="uname" required>
+
+      <label for="psw"><b>Password</b></label>
+      <input id="pass" type="password" placeholder="Enter Password" name="psw" required>
+
+      <button onclick="login()">Login</button>
+
+    </div>
+
+    <!-- Simple header with fixed tabs. -->
+<div id="user_div" class="mdl-layout mdl-js-layout mdl-layout--fixed-header
+            mdl-layout--fixed-tabs">
+  <header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+      <!-- Title -->
+      <span class="mdl-layout-title">Afreet MLM Products | Web Admin</span>
+      <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onclick="logout()" style="margin-left:900px">Logout</button>
+    </div>
+    <!-- Tabs -->
+    <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+      <a href="#fixed-tab-1" class="mdl-layout__tab is-active">Men</a>
+      <a href="#fixed-tab-2" class="mdl-layout__tab">Women</a>
+      <a href="#fixed-tab-3" class="mdl-layout__tab">Kid</a>
+    </div>
+  </header>
+
+  <main class="mdl-layout__content">
+    <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
+      <div class="page-content" style = "margin-left:450px; margin-top:50px">
+        <table class="mdl-data-table mdl-js-data-table">
+    <thead>
+      <tr>
+        <th class="mdl-data-table__cell--non-numeric">PID</th>
+        <th class="mdl-data-table__cell--non-numeric">Key</th>
+        <th class="mdl-data-table__cell--non-numeric">Description</th>
+        <th>MRP</th>
+        <th>AFP</th>
+        <th class="mdl-data-table__cell--non-numeric">Image</th>
+      </tr>
+    </thead>
+    <tbody id="table_men"></tbody>
+  </table>
+
+  <br>
+
+  <div>
+
+    <button id="show-dialog" type="button" class="mdl-button fullbutton" onclick="showAddDialog(0)">Add New Product</button>
+    <br>
+    <div id = "madd_layout" style="display: none">
+      <h3><ul><b>Add New Product</b></ul></h3>
+
+      PID:<br>
+      <input type="text" placeholder="PID" id="mpid">
+      <br>
+      Description:<br>
+      <input type="text" placeholder="Description" id="mdesc">
+      <br>
+      MRP:<br>
+      <input type="number" placeholder="MRP" id="mmrp">
+      <br>
+      AFP:<br>
+      <input type="number" placeholder="AFP" id="mafp">
+      <br>
+      Image:<br>
+      <input type="file" id="mimage">
+      <br>
+      <button type="button" class="mdl-button fullbutton" onclick="submit()">Submit</button>
+      <button type="button" class="mdl-button fullbutton" onclick="hideAddDialog()">Close</button>
+    </div>
+  </div>
+  <br>
+  <div>
+    <h3><ul><b>Delete Existing Product</b></ul></h3>
+    Enter the Key of the Product to Delete:<br>
+    <input type="text" placeholder="Key" id="mkey_text">
+    <br>
+    <button type="button" class="mdl-button fullbutton" onclick="remove(0)">Click Here to Delete</button>
+  </div>
+
+      </div>
+    </section>
+    <section class="mdl-layout__tab-panel" id="fixed-tab-2">
+      <div class="page-content" style = "margin-left:450px; margin-top:50px">
+        <table class="mdl-data-table mdl-js-data-table">
+    <thead>
+      <tr>
+        <th class="mdl-data-table__cell--non-numeric">PID</th>
+        <th class="mdl-data-table__cell--non-numeric">Key</th>
+        <th class="mdl-data-table__cell--non-numeric">Description</th>
+        <th>MRP</th>
+        <th>AFP</th>
+        <th class="mdl-data-table__cell--non-numeric">Image</th>
+      </tr>
+    </thead>
+    <tbody id="table_women"></tbody>
+  </table>
+
+  <br>
+
+  <div>
+
+    <button id="show-dialog" type="button" class="mdl-button fullbutton" onclick="showAddDialog(1)">Add New Product</button>
+    <br>
+    <div id = "wadd_layout" style="display: none">
+      <h3><ul><b>Add New Product</b></ul></h3>
+
+      PID:<br>
+      <input type="text" placeholder="PID" id="wpid">
+      <br>
+      Description:<br>
+      <input type="text" placeholder="Description" id="wdesc">
+      <br>
+      MRP:<br>
+      <input type="number" placeholder="MRP" id="wmrp">
+      <br>
+      AFP:<br>
+      <input type="number" placeholder="AFP" id="wafp">
+      <br>
+      Image:<br>
+      <input type="file" id="wimage">
+      <br>
+      <button type="button" class="mdl-button fullbutton" onclick="submit()">Submit</button>
+      <button type="button" class="mdl-button fullbutton" onclick="hideAddDialog()">Close</button>
+    </div>
+  </div>
+  <br>
+  <div>
+    <h3><ul><b>Delete Existing Product</b></ul></h3>
+    Enter the Key of the Product to Delete:<br>
+    <input type="text" placeholder="Key" id="fkey_text">
+    <br>
+    <button type="button" class="mdl-button fullbutton" onclick="remove(1)">Click Here to Delete</button>
+  </div>
+      </div>
+    </section>
+    <section class="mdl-layout__tab-panel" id="fixed-tab-3">
+      <div class="page-content" style = "margin-left:450px; margin-top:50px">
+        <table class="mdl-data-table mdl-js-data-table">
+    <thead>
+      <tr>
+        <th class="mdl-data-table__cell--non-numeric">PID</th>
+        <th class="mdl-data-table__cell--non-numeric">Key</th>
+        <th class="mdl-data-table__cell--non-numeric">Description</th>
+        <th>MRP</th>
+        <th>AFP</th>
+        <th class="mdl-data-table__cell--non-numeric">Image</th>
+      </tr>
+    </thead>
+    <tbody id="table_kid"></tbody>
+  </table>
+
+  <br>
+
+  <div>
+
+    <button id="show-dialog" type="button" class="mdl-button fullbutton" onclick="showAddDialog(2)">Add New Product</button>
+    <br>
+    <div id = "kadd_layout" style="display: none">
+      <h3><ul><b>Add New Product</b></ul></h3>
+
+      PID:<br>
+      <input type="text" placeholder="PID" id="kpid">
+      <br>
+      Description:<br>
+      <input type="text" placeholder="Description" id="kdesc">
+      <br>
+      MRP:<br>
+      <input type="number" placeholder="MRP" id="kmrp">
+      <br>
+      AFP:<br>
+      <input type="number" placeholder="AFP" id="kafp">
+      <br>
+      Image:<br>
+      <input type="file" id="kimage">
+      <br>
+      <button type="button" class="mdl-button fullbutton" onclick="submit()">Submit</button>
+      <button type="button" class="mdl-button fullbutton" onclick="hideAddDialog()">Close</button>
+    </div>
+  </div>
+  <br>
+  <div>
+    <h3><ul><b>Delete Existing Product</b></ul></h3>
+    Enter the Key of the Product to Delete:<br>
+    <input type="text" placeholder="Key" id="kkey_text">
+    <br>
+    <button type="button" class="mdl-button fullbutton" onclick="remove(2)">Click Here to Delete</button>
+  </div>
+      </div>
+    </section>
+  </main>
+
+</div>
+
+
+
+
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+       https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.7.0/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/init.js"></script>
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyDwRN0IE0QArwa36PD-D4nZBabIf4DBYvA",
+      authDomain: "afreetproductgallery.firebaseapp.com",
+      databaseURL: "https://afreetproductgallery.firebaseio.com",
+      projectId: "afreetproductgallery",
+      storageBucket: "afreetproductgallery.appspot.com",
+      messagingSenderId: "178108438334",
+      appId: "1:178108438334:web:0912f2e9f6b7b005843e6f"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+  </script>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
