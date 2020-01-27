@@ -51,19 +51,19 @@ firebase.auth().onAuthStateChanged(function(user) {
 function remove(type){
 
   if (type == 0) {
-    key = document.getElementById("mkey_text").value;
+    key = document.getElementById("mkey_text").value.trim();
     menRef.child(key).remove();
     window.alert("Product Deleted Successfully");
     document.location.reload(true);
   }
   if (type == 1) {
-    key = document.getElementById("fkey_text").value;
+    key = document.getElementById("fkey_text").value.trim();
     womenRef.child(key).remove();
     window.alert("Product Deleted Successfully");
     document.location.reload(true);
   }
   if (type == 2) {
-    key = document.getElementById("kkey_text").value;
+    key = document.getElementById("kkey_text").value.trim();
     kidRef.child(key).remove();
     window.alert("Product Deleted Successfully");
     document.location.reload(true);
@@ -110,7 +110,7 @@ $("#kimage").on("change", function(event){
 
 function submit(){
   if (type == 0) {
-    if ((document.getElementById("mpid").value == "") || (document.getElementById("mdesc").value == "") || (document.getElementById("mmrp").value == "") || (document.getElementById("mafp").value == "")) {
+    if ((document.getElementById("mpid").value.trim() == "") || (document.getElementById("mdesc").value.trim() == "") || (document.getElementById("mmrp").value.trim() == "") || (document.getElementById("mafp").value.trim() == "")) {
       window.alert("Please Fillup All Fields!!!");
     }
     else {
@@ -118,7 +118,7 @@ function submit(){
     }
   }
   if (type == 1) {
-    if ((document.getElementById("wpid").value == "") || (document.getElementById("wdesc").value == "") || (document.getElementById("wmrp").value == "") || (document.getElementById("wafp").value == "")) {
+    if ((document.getElementById("wpid").value.trim() == "") || (document.getElementById("wdesc").value.trim() == "") || (document.getElementById("wmrp").value.trim() == "") || (document.getElementById("wafp").value.trim() == "")) {
       window.alert("Please Fillup All Fields!!!");
     }
     else {
@@ -126,7 +126,7 @@ function submit(){
     }
   }
   if (type == 2) {
-    if ((document.getElementById("kpid").value == "") || (document.getElementById("kdesc").value == "") || (document.getElementById("kmrp").value == "") || (document.getElementById("kafp").value == "")) {
+    if ((document.getElementById("kpid").value.trim() == "") || (document.getElementById("kdesc").value.trim() == "") || (document.getElementById("kmrp").value.trim() == "") || (document.getElementById("kafp").value.trim() == "")) {
       window.alert("Please Fillup All Fields!!!");
     }
     else {
@@ -171,30 +171,30 @@ switch (snapshot.state) {
       var key = mRef.push().key;
       if (type == 0) {
         var postData = {
-          PID: document.getElementById("mpid").value,
-          description: document.getElementById("mdesc").value,
-          MRP: document.getElementById("mmrp").value,
-          AFP: document.getElementById("mafp").value,
+          PID: document.getElementById("mpid").value.trim(),
+          description: document.getElementById("mdesc").value.trim(),
+          MRP: document.getElementById("mmrp").value.trim(),
+          AFP: document.getElementById("mafp").value.trim(),
           postimage: downloadURL,
           key: key,
         };
       }
       if (type == 1) {
         var postData = {
-          PID: document.getElementById("wpid").value,
-          description: document.getElementById("wdesc").value,
-          MRP: document.getElementById("wmrp").value,
-          AFP: document.getElementById("wafp").value,
+          PID: document.getElementById("wpid").value.trim(),
+          description: document.getElementById("wdesc").value.trim(),
+          MRP: document.getElementById("wmrp").value.trim(),
+          AFP: document.getElementById("wafp").value.trim(),
           postimage: downloadURL,
           key: key,
         };
       }
       if (type == 2) {
         var postData = {
-          PID: document.getElementById("kpid").value,
-          description: document.getElementById("kdesc").value,
-          MRP: document.getElementById("kmrp").value,
-          AFP: document.getElementById("kafp").value,
+          PID: document.getElementById("kpid").value.trim(),
+          description: document.getElementById("kdesc").value.trim(),
+          MRP: document.getElementById("kmrp").value.trim(),
+          AFP: document.getElementById("kafp").value.trim(),
           postimage: downloadURL,
           key: key,
         };
