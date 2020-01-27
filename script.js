@@ -10,7 +10,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     document.getElementById("login_div").style.display = "block";
   }
 });
- 
+
 
   var menRef = firebase.database().ref().child("Products").child("Men");
   menRef.on("child_added", snap => {
@@ -101,7 +101,7 @@ function hideAddDialog(){
 $("#mimage").on("change", function(event){
   selectedFile = event.target.files[0];
 });
-$("#fimage").on("change", function(event){
+$("#wimage").on("change", function(event){
   selectedFile = event.target.files[0];
 });
 $("#kimage").on("change", function(event){
